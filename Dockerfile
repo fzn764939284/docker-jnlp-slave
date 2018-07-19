@@ -84,6 +84,8 @@ RUN set -x \
 		openjdk8="$JAVA_ALPINE_VERSION" \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
+RUN apk add --no-cache curl tar bash procps
+
 ARG MAVEN_VERSION=3.5.4
 ARG USER_HOME_DIR="/root"
 ARG SHA=ce50b1c91364cb77efe3776f756a6d92b76d9038b0a0782f7d53acf1e997a14d
@@ -99,12 +101,6 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
-
-# set up nsswitch.conf for Go's "netgo" implementation (which Docker explicitly uses)
-# - https://github.com/docker/docker-ce/blob/v17.09.0-ce/components/engine/hack/make.sh#L149
-# - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
-# - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
-RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 ENV DOCKER_CHANNEL edge
 ENV DOCKER_VERSION 18.05.0-ce
