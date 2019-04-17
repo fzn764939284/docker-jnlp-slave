@@ -61,6 +61,10 @@ RUN set -ex; \
 	chmod +x /usr/local/bin/dind; \
 	apk del .fetch-deps
 
+RUN set -ex; \
+	apk add --no-cache --virtual iptables; \
+	apk del .fetch-deps
+
 VOLUME /var/lib/docker
 
 ARG user=jenkins
