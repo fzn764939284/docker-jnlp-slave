@@ -6,7 +6,8 @@ RUN apk add --no-cache \
 
 ENV LANG C.UTF-8
 
-RUN apk add --no-cache curl tar bash procps
+RUN apk add --no-cache curl tar bash procps redsocks ;\
+    chmod +x /usr/local/bin/redsocks.sh
 
 ENV DOCKER_CHANNEL edge
 ENV DOCKER_VERSION 18.05.0-ce
@@ -62,8 +63,7 @@ RUN set -ex; \
 	apk del .fetch-deps
 
 RUN set -ex; \
-	apk add --no-cache --virtual redsocks iptables;\
-	chmod +x /usr/local/bin/redsocks.sh
+	apk add --no-cache --virtual iptables
 
 VOLUME /var/lib/docker
 
