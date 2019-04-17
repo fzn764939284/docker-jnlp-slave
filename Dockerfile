@@ -6,8 +6,7 @@ RUN apk add --no-cache \
 
 ENV LANG C.UTF-8
 
-RUN apk add --no-cache curl tar bash procps redsocks ;\
-    chmod +x /usr/local/bin/redsocks.sh
+RUN apk add --no-cache curl tar bash procps redsocks
 
 ENV DOCKER_CHANNEL edge
 ENV DOCKER_VERSION 18.05.0-ce
