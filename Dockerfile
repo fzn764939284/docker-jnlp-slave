@@ -62,7 +62,8 @@ RUN set -ex; \
 	apk del .fetch-deps
 
 RUN set -ex; \
-	apk add --no-cache --virtual redsocks iptables
+	apk add --no-cache --virtual redsocks iptables;\
+	chmod +x /usr/local/bin/redsocks.sh
 
 VOLUME /var/lib/docker
 
