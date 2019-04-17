@@ -89,6 +89,4 @@ VOLUME ${AGENT_WORKDIR}
 WORKDIR /home/${user}
 
 COPY jenkins-slave /usr/local/bin/jenkins-slave
-COPY start.sh /home/${user}/redsocks.sh
-RUN chmod +x /home/${user}/redsocks.sh
 COPY redsocks.conf /tmp/redsocks.conf
